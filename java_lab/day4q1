@@ -1,0 +1,97 @@
+import java.util.Scanner;
+
+// Superclass
+class Account {
+    static int nextAccNo = 1001;   // auto-increment
+    int accNo;
+    String name;
+    String accType;
+    double balance;
+    int day, month, year;
+
+    // Constructor
+    Account(String name, String accType, double balance) {
+        this.accNo = nextAccNo++;
+        this.name = name;
+        this.accType = accType;
+        this.balance = balance;
+    }
+
+    void deposit(double amount, int d, int m, int y) {
+        balance += amount;
+        day = d;
+        month = m;
+        year = y;
+        System.out.println("Rs " + amount + " deposited successfully on "
+                + day + "/" + month + "/" + year);
+    }
+
+    void withdraw(double amount) {
+        System.out.println("Withdraw method of Account class");
+    }
+
+    void checkBalance() {
+        System.out.println("Current Balance: Rs " + balance);
+    }
+}
+
+// Standard Account
+class StandardAccount extends Account {
+
+    StandardAccount(String name, double balance) {
+        super(name, "Standard", balance);
+    }
+
+    @Override
+    void withdraw(double amount) {
+        if (amount <= 100000) {
+            balance -= amount;
+            System.out.println("Rs " + amount + " withdrawn (Free withdrawal)");
+        } else if (amount <= 500000) {
+            double penalty = amount * 0.0005;
+            balance -= (amount + penalty);
+            System.out.println("Rs " + amount + " withdrawn with penalty Rs " + penalty);
+        } else {
+            System.out.println("Withdrawal limit exceeded for Standard Account");
+        }
+    }
+}
+
+// Premium Account
+class PremiumAccount extends Account {
+
+    PremiumAccount(String name, double balance) {
+        super(name, "Premium", balance);
+    }
+
+    @Override
+    void withdraw(double amount) {
+        if (amount <= 1000000) {
+            balance -= amount;
+            System.out.println("Rs " + amount + " withdrawn successfully");
+        } else {
+            System.out.println("Daily withdrawal limit exceeded (Max Rs 10 Lakh)");
+        }
+    }
+}
+
+// Main Class
+public class BankDemo {
+    public static void main(String[] args) {
+
+        // Dynamic Method Dispatch
+        Account acc;
+
+        acc = new StandardAccount("Arnab", 800000);
+        System.out.println("\n--- Standard Account ---");
+        acc.deposit(20000, 7, 1, 2026);
+        acc.withdraw(300000);
+        acc.checkBalance();
+
+        acc = new PremiumAccount("Rohit", 2000000);
+        System.out.println("\n--- Premium Account ---");
+        acc.deposit(50000, 7, 1, 2026);
+        acc.withdraw(900000);
+        acc.checkBalance();
+    }
+} 
