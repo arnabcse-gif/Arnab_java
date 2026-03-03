@@ -30,15 +30,6 @@
 
 ---
 
-## 📊 GitHub Statistics
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=arnabcse-gif&show_icons=true" height="170"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=arnabcse-gif&layout=compact" height="170"/>
-</p>
-
-
-
 ## 📫 Contact Me
 
 - 📧 Email: 24051994@kiit.ac.in  
